@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TopSellers } from "@/components/TopSellers";
+import { RoyalExperienceCarousel } from "@/components/RoyalExperienceCarousel";
 
 const testimonials = [
   {
@@ -119,57 +120,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="w-full bg-white px-8 py-20 md:px-16">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-16 md:flex-row">
-          <div className="relative grid flex-1 grid-cols-2 gap-3">
-            <div className="relative col-span-1 row-span-2 aspect-[3/4] overflow-hidden rounded-2xl bg-[var(--light-grey)]">
-              <Image
-                src="/food-image1.jpeg"
-                alt="Royal Calabar platter feature image"
-                fill
-                sizes="(min-width: 768px) 24vw, 45vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="relative col-span-1 aspect-square overflow-hidden rounded-2xl bg-[var(--off-white)]">
-              <Image
-                src="/food-image2-bg.png"
-                alt="Royal platter side dish"
-                fill
-                sizes="(min-width: 768px) 24vw, 45vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="relative col-span-1 aspect-square overflow-hidden rounded-2xl bg-[var(--light-grey)]">
-              <Image
-                src="/food-image3.png"
-                alt="Royal platter crispy chicken close-up"
-                fill
-                sizes="(min-width: 768px) 24vw, 45vw"
-                className="object-cover"
-              />
-            </div>
+      <section className="w-full bg-white px-6 py-16 sm:px-10 md:px-16">
+        <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 md:flex-row md:items-start">
+          <div className="relative grid w-full flex-1">
+            <RoyalExperienceCarousel />
           </div>
 
           <div className="flex-1 text-[var(--charcoal)]">
-            <p className="mb-4 font-barlow text-xs font-medium uppercase tracking-[0.3em] text-[#C0151F]">
+            <p className="mb-4 text-center text-xs font-medium uppercase tracking-[0.3em] text-[#C0151F] sm:text-left">
               Royal Experience
             </p>
-            <h2 className="mb-6 font-playfair text-4xl font-black leading-tight md:text-5xl">
+            <h2 className="mb-6 font-playfair text-3xl font-black leading-tight md:text-4xl lg:text-5xl">
               Savor the Royal
               <br />
               <span style={{ color: "#C0151F" }}>Calabar Platter</span>
               <br />
               Tonight
             </h2>
-            <p className="mb-8 max-w-md font-barlow text-base font-light leading-relaxed text-[var(--text-muted)]">
+            <p className="mb-8 max-w-xl text-center font-barlow text-base font-light leading-relaxed text-[var(--text-muted)] sm:text-left">
               Get 4 crispy chicken tenders, 4 Calabar hot wings, cheesy fries, coleslaw, and 2 chilled locally hand-crafted ginger/zobo beverages for just &#8358;12,500. Feeds up to 3 people.
             </p>
-            <Link href="/order">
-              <button className="rounded-full bg-[#C0151F] px-8 py-4 font-barlow text-sm font-semibold uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 hover:bg-[#E8202C]">
-                Get the Deal Now &rarr;
-              </button>
-            </Link>
+            <div className="flex justify-center sm:justify-start">
+              <Link href="/contact">
+                <button className="rounded-full bg-[#C0151F] px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 hover:bg-[#E8202C]">
+                  Contact our Chefs
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
