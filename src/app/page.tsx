@@ -43,7 +43,9 @@ export default function Home() {
               Crafted with Pride.
             </h1>
             <p className="mt-6 max-w-[520px] font-barlow text-lg font-light leading-8 text-[var(--text-muted)]">
-              Daily Crisps serves Calabar&apos;s favorite golden chicken, bold rice plates, and local soups from our Inyang Street kitchen, always hot, clean, and deeply seasoned.
+              Daily Crisps serves Calabar&apos;s favorite golden chicken, bold
+              rice plates, and local soups from our Inyang Street kitchen,
+              always hot, clean, and deeply seasoned.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link href="/menu">
@@ -61,9 +63,15 @@ export default function Home() {
               </Link>
             </div>
             <div className="mt-10 grid max-w-2xl gap-4 border-t border-[var(--mid-grey)] pt-6 font-barlow text-sm text-[var(--text-muted)] sm:grid-cols-3">
-              <strong className="text-[var(--charcoal)]">100% Fresh Local Birds</strong>
-              <strong className="text-[var(--charcoal)]">15+ Signature Spices</strong>
-              <strong className="text-[var(--charcoal)]">4.9&#9733; Over 2,500 Reviews</strong>
+              <strong className="text-[var(--charcoal)]">
+                100% Fresh Local Birds
+              </strong>
+              <strong className="text-[var(--charcoal)]">
+                15+ Signature Spices
+              </strong>
+              <strong className="text-[var(--charcoal)]">
+                4.9&#9733; Over 2,500 Reviews
+              </strong>
             </div>
           </div>
           <div className="relative mx-auto flex aspect-square w-full max-w-[520px] items-center justify-center sm:max-w-[600px] lg:max-w-[680px] lg:justify-end">
@@ -97,21 +105,42 @@ export default function Home() {
                   <>
                     <div
                       className="mx-auto my-8 block md:hidden"
-                      style={{ width: "60px", height: "1.5px", background: "#C0151F", opacity: 0.4 }}
+                      style={{
+                        width: "60px",
+                        height: "1.5px",
+                        background: "#C0151F",
+                        opacity: 0.4,
+                      }}
                     />
                     <div
                       className="hidden md:block"
-                      style={{ width: "1.5px", height: "100px", background: "#C0151F", opacity: 0.4, flexShrink: 0 }}
+                      style={{
+                        width: "1.5px",
+                        height: "100px",
+                        background: "#C0151F",
+                        opacity: 0.4,
+                        flexShrink: 0,
+                      }}
                     />
                   </>
                 )}
                 <article className="flex flex-1 flex-col items-center px-6 text-center sm:px-10">
-                  <span className="font-playfair text-5xl text-amber-300">&ldquo;</span>
-                  <p className="mt-2 font-barlow text-sm text-amber-500">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-                  <p className="mt-5 max-w-[280px] font-barlow text-sm font-light leading-7 text-[var(--text-muted)]">{item.quote}</p>
+                  <span className="font-playfair text-5xl text-amber-300">
+                    &ldquo;
+                  </span>
+                  <p className="mt-2 font-barlow text-sm text-amber-500">
+                    &#9733;&#9733;&#9733;&#9733;&#9733;
+                  </p>
+                  <p className="mt-5 max-w-[280px] font-barlow text-sm font-light leading-7 text-[var(--text-muted)]">
+                    {item.quote}
+                  </p>
                   <div className="mt-6">
-                    <h3 className="font-playfair text-xl font-bold text-[var(--charcoal)]">{item.name}</h3>
-                    <p className="font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-[var(--red)]">{item.role}</p>
+                    <h3 className="font-playfair text-xl font-bold text-[var(--charcoal)]">
+                      {item.name}
+                    </h3>
+                    <p className="font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-[var(--red)]">
+                      {item.role}
+                    </p>
                   </div>
                 </article>
               </div>
@@ -138,7 +167,9 @@ export default function Home() {
               Tonight
             </h2>
             <p className="mb-8 max-w-xl text-center font-barlow text-base font-light leading-relaxed text-[var(--text-muted)] sm:text-left">
-              Get 4 crispy chicken tenders, 4 Calabar hot wings, cheesy fries, coleslaw, and 2 chilled locally hand-crafted ginger/zobo beverages for just &#8358;12,500. Feeds up to 3 people.
+              Get 4 crispy chicken tenders, 4 Calabar hot wings, cheesy fries,
+              coleslaw, and 2 chilled locally hand-crafted ginger/zobo beverages
+              for just &#8358;12,500. Feeds up to 3 people.
             </p>
             <div className="flex justify-center sm:justify-start">
               <Link href="/contact">
@@ -150,7 +181,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </>
   );
 }
