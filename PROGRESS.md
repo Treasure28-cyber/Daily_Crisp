@@ -56,3 +56,8 @@
 ✅ Royal Platter collage placeholders replaced with supplied food images
 ✅ Secret Ingredient section removed from the home page
 ✅ Contact page map placeholder replaced with supplied location image
+✅ Royal Platter second collage image cache-busted with background version
+✅ Delivery fee calculation removed from order totals and WhatsApp checkout
+✅ Testimonials restyled as inline divider layout
+✅ Home bottom contact strip removed
+✅ Footer delivery status text removed

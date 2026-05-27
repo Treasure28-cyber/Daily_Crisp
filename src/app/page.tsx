@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Clock, MapPin, Phone } from "lucide-react";
-import { LinkButton } from "@/components/Button";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TopSellers } from "@/components/TopSellers";
 
@@ -91,17 +89,31 @@ export default function Home() {
             title="What Calabar Folk are Saying"
             body="Read true reviews from real local families, foodies, and university students who visit our Inyang Street store."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <article key={item.name} className="relative border border-[var(--mid-grey)] bg-white p-7">
-                <span className="absolute right-6 top-4 font-playfair text-6xl text-amber-300">&ldquo;</span>
-                <p className="font-barlow text-sm text-amber-500">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-                <p className="mt-5 font-barlow text-base font-light leading-8 text-[var(--text-muted)]">{item.quote}</p>
-                <div className="mt-6">
-                  <h3 className="font-playfair text-xl font-bold text-[var(--charcoal)]">{item.name}</h3>
-                  <p className="font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-[var(--red)]">{item.role}</p>
-                </div>
-              </article>
+          <div className="mt-12 flex w-full flex-col items-center justify-center gap-0 md:flex-row">
+            {testimonials.map((item, index) => (
+              <div key={item.name} className="contents">
+                {index > 0 && (
+                  <>
+                    <div
+                      className="mx-auto my-8 block md:hidden"
+                      style={{ width: "60px", height: "1.5px", background: "#C0151F", opacity: 0.4 }}
+                    />
+                    <div
+                      className="hidden md:block"
+                      style={{ width: "1.5px", height: "100px", background: "#C0151F", opacity: 0.4, flexShrink: 0 }}
+                    />
+                  </>
+                )}
+                <article className="flex flex-1 flex-col items-center px-6 text-center sm:px-10">
+                  <span className="font-playfair text-5xl text-amber-300">&ldquo;</span>
+                  <p className="mt-2 font-barlow text-sm text-amber-500">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                  <p className="mt-5 max-w-[280px] font-barlow text-sm font-light leading-7 text-[var(--text-muted)]">{item.quote}</p>
+                  <div className="mt-6">
+                    <h3 className="font-playfair text-xl font-bold text-[var(--charcoal)]">{item.name}</h3>
+                    <p className="font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-[var(--red)]">{item.role}</p>
+                  </div>
+                </article>
+              </div>
             ))}
           </div>
         </div>
@@ -121,7 +133,7 @@ export default function Home() {
             </div>
             <div className="relative col-span-1 aspect-square overflow-hidden rounded-2xl bg-[var(--off-white)]">
               <Image
-                src="/food-image2.png"
+                src="/food-image2-bg.png"
                 alt="Royal platter side dish"
                 fill
                 sizes="(min-width: 768px) 24vw, 45vw"
@@ -162,25 +174,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-14">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-y border-[var(--mid-grey)] py-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-3 font-barlow text-[var(--charcoal)]">
-            <MapPin className="h-5 w-5 text-[var(--red)]" />
-            No. 36 Inyang Street, Calabar
-          </div>
-          <div className="flex items-center gap-3 font-barlow text-[var(--charcoal)]">
-            <Phone className="h-5 w-5 text-[var(--red)]" />
-            +234 904 611 6130
-          </div>
-          <div className="flex items-center gap-3 font-barlow text-[var(--charcoal)]">
-            <Clock className="h-5 w-5 text-[var(--red)]" />
-            Daily: 11:00 AM - 10:30 PM
-          </div>
-          <LinkButton href="/contact" variant="outline">
-            Get Directions &rarr;
-          </LinkButton>
-        </div>
-      </section>
     </>
   );
 }

@@ -73,7 +73,6 @@ export function Footer() {
             <p>Monday - Friday: <strong className="text-white">11:00 AM - 10:30 PM</strong></p>
             <p>Saturday: <strong className="text-white">11:00 AM - 11:00 PM</strong></p>
             <p>Sunday: <strong className="text-white">12:30 PM - 10:00 PM</strong></p>
-            <p className="flex items-center gap-2 text-emerald-400"><span className="h-2.5 w-2.5 rounded-full bg-emerald-400" /> Delivery Status: <strong>ACTIVE</strong></p>
           </div>
         </div>
         <div>

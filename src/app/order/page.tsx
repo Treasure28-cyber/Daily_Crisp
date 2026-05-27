@@ -21,7 +21,6 @@ type CheckoutForm = {
 
 const CART_STORAGE_KEY = "daily-crisps-cart";
 const WHATSAPP_NUMBER = "2349046116130";
-const DELIVERY_FEE = 500;
 
 export default function OrderPage() {
   const [active, setActive] = useState<MenuCategory>("All");
@@ -37,8 +36,7 @@ export default function OrderPage() {
 
   const filtered = useMemo(() => (active === "All" ? menuItems : menuItems.filter((item) => item.category === active)), [active]);
   const subtotal = cart.reduce((sum, entry) => sum + entry.item.price * entry.qty, 0);
-  const deliveryFee = cart.length > 0 ? DELIVERY_FEE : 0;
-  const total = subtotal + deliveryFee;
+  const total = subtotal;
   const count = cart.reduce((sum, entry) => sum + entry.qty, 0);
 
   useEffect(() => {
@@ -112,8 +110,8 @@ export default function OrderPage() {
       items,
       "",
       `Subtotal: ${formatPrice(subtotal)}`,
-      `Delivery Fee: ${formatPrice(deliveryFee)}`,
       `Total: ${formatPrice(total)}`,
+      "Delivery fee: To be confirmed by Daily Crisps",
       "",
       "Delivery Address:",
       form.address,
@@ -248,7 +246,7 @@ export default function OrderPage() {
             )}
             <div className="mt-6 space-y-3 border-t border-[var(--mid-grey)] pt-5 font-barlow">
               <p className="flex justify-between text-[var(--text-muted)]"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></p>
-              <p className="flex justify-between text-[var(--text-muted)]"><span>Delivery fee</span><span>{formatPrice(deliveryFee)}</span></p>
+              <p className="flex justify-between text-[var(--text-muted)]"><span>Delivery fee</span><span>Confirmed manually</span></p>
               <p className="flex justify-between text-xl font-bold text-[var(--charcoal)]"><span>Total</span><span>{formatPrice(total)}</span></p>
             </div>
             <form className="mt-6 space-y-3 border-t border-[var(--mid-grey)] pt-5" onSubmit={submitOrder}>
