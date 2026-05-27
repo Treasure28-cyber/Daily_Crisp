@@ -1,65 +1,186 @@
 import Image from "next/image";
+import Link from "next/link";
+import { Clock, MapPin, Phone } from "lucide-react";
+import { LinkButton } from "@/components/Button";
+import { SectionHeader } from "@/components/SectionHeader";
+import { TopSellers } from "@/components/TopSellers";
+
+const testimonials = [
+  {
+    name: "Ekanem Bassey",
+    role: "Calabar Local Guide",
+    quote:
+      "The Daily Signature Crispy Chicken is hands-down the crunchiest in Cross River! Double battered, perfectly spicy, and always piping hot. 10/10 recommend!",
+  },
+  {
+    name: "Obinna Okafor",
+    role: "Unical Student",
+    quote:
+      "Best chicken burger in town! The Calabar Heatwave Burger is real fire. I love how consistent and clean their physical space is on Inyang Street.",
+  },
+  {
+    name: "Victoria Effiong",
+    role: "Food Blogger",
+    quote:
+      "Love the Hibiscus Ginger Zobo Twist! It paired perfectly with the Royal Platter. The taste is incredibly fresh and premium, not sugary artificial stuff.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <>
+      <section className="relative isolate overflow-hidden bg-white px-6 pb-16 pt-32 sm:pt-36 lg:py-28">
+        <div className="absolute inset-y-0 right-0 -z-10 hidden w-[58%] bg-gradient-to-l from-red-50 via-white to-transparent lg:block" />
+        <div className="mx-auto grid min-h-[calc(100vh-88px)] w-full max-w-7xl items-center gap-12 lg:grid-cols-[0.86fr_1fr]">
+          <div className="max-w-3xl">
+            <span className="inline-flex rounded-full border border-red-100 bg-red-50 px-4 py-2 font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-[var(--red)] shadow-sm">
+              &#10022; Calabar&apos;s #1 Crispy Chicken Spot
+            </span>
+            <h1 className="mt-6 max-w-3xl font-playfair text-5xl font-black leading-[1.02] text-[var(--charcoal)] md:text-7xl">
+              Golden Crunch.
+              <br />
+              <span className="text-[var(--red)]">Pure Local Spice.</span>
+              <br />
+              Crafted with Pride.
+            </h1>
+            <p className="mt-6 max-w-[520px] font-barlow text-lg font-light leading-8 text-[var(--text-muted)]">
+              Daily Crisps serves Calabar&apos;s favorite golden chicken, bold rice plates, and local soups from our Inyang Street kitchen, always hot, clean, and deeply seasoned.
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Link href="/menu">
+                <button
+                  className="rounded-full bg-[#C0151F] px-8 py-4 font-barlow text-sm font-semibold uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 hover:bg-[#E8202C]"
+                  style={{ animation: "pulseRed 2.5s infinite" }}
+                >
+                  Explore Our Menu
+                </button>
+              </Link>
+              <Link href="/order">
+                <button className="rounded-full border-2 border-[#C0151F] bg-transparent px-8 py-4 font-barlow text-sm font-semibold uppercase tracking-widest text-[#C0151F] transition-all hover:-translate-y-0.5 hover:bg-[#C0151F] hover:text-white">
+                  Order Now
+                </button>
+              </Link>
+            </div>
+            <div className="mt-10 grid max-w-2xl gap-4 border-t border-[var(--mid-grey)] pt-6 font-barlow text-sm text-[var(--text-muted)] sm:grid-cols-3">
+              <strong className="text-[var(--charcoal)]">100% Fresh Local Birds</strong>
+              <strong className="text-[var(--charcoal)]">15+ Signature Spices</strong>
+              <strong className="text-[var(--charcoal)]">4.9&#9733; Over 2,500 Reviews</strong>
+            </div>
+          </div>
+          <div className="relative mx-auto flex aspect-square w-full max-w-[520px] items-center justify-center sm:max-w-[600px] lg:max-w-[680px] lg:justify-end">
+            <div className="absolute inset-[8%] rounded-full bg-red-50 blur-3xl" />
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/hero-bg-removebg.png"
+              alt="Daily Crisps jollof rice with grilled chicken, plantain, and salad"
+              width={900}
+              height={900}
+              preload
+              sizes="(max-width: 640px) 88vw, (max-width: 1024px) 58vw, 48vw"
+              className="relative z-10 h-auto w-full object-contain drop-shadow-[0_30px_55px_rgba(26,26,26,0.22)]"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <TopSellers />
+
+      <section className="bg-[var(--off-white)] px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeader
+            label="Crispy Love"
+            title="What Calabar Folk are Saying"
+            body="Read true reviews from real local families, foodies, and university students who visit our Inyang Street store."
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {testimonials.map((item) => (
+              <article key={item.name} className="relative border border-[var(--mid-grey)] bg-white p-7">
+                <span className="absolute right-6 top-4 font-playfair text-6xl text-amber-300">&ldquo;</span>
+                <p className="font-barlow text-sm text-amber-500">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+                <p className="mt-5 font-barlow text-base font-light leading-8 text-[var(--text-muted)]">{item.quote}</p>
+                <div className="mt-6">
+                  <h3 className="font-playfair text-xl font-bold text-[var(--charcoal)]">{item.name}</h3>
+                  <p className="font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-[var(--red)]">{item.role}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-white px-8 py-20 md:px-16">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-16 md:flex-row">
+          <div className="relative grid flex-1 grid-cols-2 gap-3">
+            <div className="relative col-span-1 row-span-2 aspect-[3/4] overflow-hidden rounded-2xl bg-[var(--light-grey)]">
+              <Image
+                src="/food-image1.jpeg"
+                alt="Royal Calabar platter feature image"
+                fill
+                sizes="(min-width: 768px) 24vw, 45vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="relative col-span-1 aspect-square overflow-hidden rounded-2xl bg-[var(--off-white)]">
+              <Image
+                src="/food-image2.png"
+                alt="Royal platter side dish"
+                fill
+                sizes="(min-width: 768px) 24vw, 45vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="relative col-span-1 aspect-square overflow-hidden rounded-2xl bg-[var(--light-grey)]">
+              <Image
+                src="/food-image3.png"
+                alt="Royal platter crispy chicken close-up"
+                fill
+                sizes="(min-width: 768px) 24vw, 45vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="flex-1 text-[var(--charcoal)]">
+            <p className="mb-4 font-barlow text-xs font-medium uppercase tracking-[0.3em] text-[#C0151F]">
+              Royal Experience
+            </p>
+            <h2 className="mb-6 font-playfair text-4xl font-black leading-tight md:text-5xl">
+              Savor the Royal
+              <br />
+              <span style={{ color: "#C0151F" }}>Calabar Platter</span>
+              <br />
+              Tonight
+            </h2>
+            <p className="mb-8 max-w-md font-barlow text-base font-light leading-relaxed text-[var(--text-muted)]">
+              Get 4 crispy chicken tenders, 4 Calabar hot wings, cheesy fries, coleslaw, and 2 chilled locally hand-crafted ginger/zobo beverages for just &#8358;12,500. Feeds up to 3 people.
+            </p>
+            <Link href="/order">
+              <button className="rounded-full bg-[#C0151F] px-8 py-4 font-barlow text-sm font-semibold uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 hover:bg-[#E8202C]">
+                Get the Deal Now &rarr;
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-6 py-14">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 border-y border-[var(--mid-grey)] py-8 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-3 font-barlow text-[var(--charcoal)]">
+            <MapPin className="h-5 w-5 text-[var(--red)]" />
+            No. 36 Inyang Street, Calabar
+          </div>
+          <div className="flex items-center gap-3 font-barlow text-[var(--charcoal)]">
+            <Phone className="h-5 w-5 text-[var(--red)]" />
+            +234 904 611 6130
+          </div>
+          <div className="flex items-center gap-3 font-barlow text-[var(--charcoal)]">
+            <Clock className="h-5 w-5 text-[var(--red)]" />
+            Daily: 11:00 AM - 10:30 PM
+          </div>
+          <LinkButton href="/contact" variant="outline">
+            Get Directions &rarr;
+          </LinkButton>
+        </div>
+      </section>
+    </>
   );
 }
