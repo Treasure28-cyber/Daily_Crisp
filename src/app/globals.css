@@ -48,6 +48,10 @@ a {
   animation: pulseRed 2.5s infinite;
 }
 
+.animate-fade-in {
+  animation: fadeInText 0.9s ease-in-out both;
+}
+
 .animate-float-pot {
   animation: floatPot 4s ease-in-out infinite;
 }

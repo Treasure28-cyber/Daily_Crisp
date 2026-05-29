@@ -86,6 +86,10 @@ export default function Home() {
               className="relative z-10 h-auto w-full object-contain drop-shadow-[0_30px_55px_rgba(26,26,26,0.22)]"
             />
           </div>
+          <p className="mt-4 text-center text-sm font-barlow font-light leading-6 text-muted sm:hidden animate-fade-in">
+            Craving something delicious?{" "}
+            <span className="block text-red">Order Now.</span>
+          </p>
         </div>
       </section>
 
