@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { menuItems } from "@/data/menu";
 import { formatPrice } from "@/data/menu";
-import { LinkButton } from "./Button";
+import { OrderButton } from "./OrderButton";
 
 const descriptions: Record<string, string> = {
   "Peppered Chicken": "Local chicken tossed in a fragrant pepper glaze with a deep, crackly finish.",
@@ -51,9 +51,9 @@ export function TopSellers() {
                 <p className="mx-auto mt-2 line-clamp-2 max-w-[240px] font-barlow text-sm font-light leading-6 text-[var(--text-muted)]">{descriptions[item.name]}</p>
                 <p className="mt-3 font-barlow text-xl font-bold text-[var(--red)]">{formatPrice(item.price)}</p>
                 <div className="mt-4">
-                  <LinkButton href="/order" className="px-5 py-2.5">
+                  <OrderButton item={item} className="px-5 py-2.5">
                     Quick Order
-                  </LinkButton>
+                  </OrderButton>
                 </div>
               </div>
             </article>

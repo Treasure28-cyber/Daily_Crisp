@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { MenuItem } from "@/data/menu";
 import { formatPrice } from "@/data/menu";
-import { LinkButton } from "./Button";
+import { OrderButton } from "./OrderButton";
 
 export function MenuCard({ item }: { item: MenuItem }) {
   return (
@@ -30,9 +30,9 @@ export function MenuCard({ item }: { item: MenuItem }) {
         </div>
         <p className="mt-3 font-barlow text-xl font-bold text-[var(--red)]">{formatPrice(item.price)}</p>
         <div className="mt-4">
-          <LinkButton href="/order" className="px-5 py-2.5">
+          <OrderButton item={item} className="px-5 py-2.5">
             Order Now
-          </LinkButton>
+          </OrderButton>
         </div>
       </div>
     </article>

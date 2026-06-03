@@ -3,6 +3,7 @@ import { Barlow, Playfair_Display } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { TopBar } from "@/components/TopBar";
+import { CartProvider } from "@/components/CartProvider";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -51,10 +52,12 @@ export default function RootLayout({
       className={`${playfair.variable} ${barlow.variable}`}
     >
       <body className="flex min-h-screen flex-col">
-        <TopBar />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <CartProvider>
+          <TopBar />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

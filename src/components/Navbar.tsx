@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingBag } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useCart } from "./CartProvider";
 
 const links = [
   { href: "/", label: "Home" },
@@ -16,6 +17,7 @@ const links = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const { count } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const transparentHome = pathname === "/" && !scrolled;
   const glassNav = scrolled;
@@ -78,9 +80,14 @@ export function Navbar() {
         <Link
           href="/order"
           aria-label="Open order page"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--mid-grey)] text-[var(--charcoal)] transition hover:border-[var(--red)] hover:bg-white hover:text-[var(--red)]"
+          className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--mid-grey)] text-[var(--charcoal)] transition hover:border-[var(--red)] hover:bg-white hover:text-[var(--red)]"
         >
           <ShoppingBag className="h-5 w-5" />
+          {count > 0 ? (
+            <span className="absolute -right-2 -top-2 flex h-6 min-w-6 items-center justify-center rounded-full bg-[var(--red)] px-1.5 font-barlow text-[0.68rem] font-bold leading-none text-white shadow-[0_8px_18px_rgba(192,21,31,0.35)] ring-2 ring-white">
+              {count}
+            </span>
+          ) : null}
         </Link>
       </nav>
     </header>
