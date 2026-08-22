@@ -4,6 +4,8 @@ import type { FormEvent } from "react";
 import { useState } from "react";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/Button";
+import { PageHero } from "@/components/PageHero";
+import { business, businessHours } from "@/data/business";
 
 type ContactForm = {
   name: string;
@@ -75,43 +77,48 @@ export default function ContactPage() {
     setSubmitted(true);
 
     if (Object.keys(errors).length > 0) return;
+
+    const message = [
+      "Hello Daily Crisps,",
+      "",
+      "I am contacting you through your website.",
+      "",
+      `Name: ${form.name.trim()}`,
+      `Email: ${form.email.trim()}`,
+      `Phone: ${form.phone.trim()}`,
+      "",
+      "Message:",
+      form.message.trim(),
+    ].join("\n");
+
+    window.open(
+      `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
     setSent(true);
   }
 
   return (
-    <section className="bg-[var(--off-white)] px-6 py-16">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10 text-center">
-          <p className="font-barlow text-xs font-semibold uppercase tracking-[0.2em] text-[var(--red)]">
-            Visit Inyang Street
-          </p>
-          <h1 className="mt-3 font-playfair text-5xl font-bold text-[var(--charcoal)]">
-            Contact Us
-          </h1>
-        </div>
+    <>
+      <PageHero
+        eyebrow="Visit Inyang Street"
+        title="Contact Us"
+        description="Reach our Calabar kitchen for enquiries, special requests, and everything Daily Crisps."
+      />
+      <section className="bg-[var(--off-white)] px-6 py-16">
+        <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 lg:grid-cols-2">
           <div className="bg-white p-8">
             <h2 className="font-playfair text-3xl font-bold text-[var(--charcoal)]">
               Reach Daily Crisps
             </h2>
-            <div className="mt-6 space-y-5 font-barlow text-[var(--text-muted)]">
-              <p className="flex gap-3">
-                <MapPin className="h-5 w-5 text-[var(--red)]" /> No. 36 Inyang
-                Street, Calabar, Cross River State, Nigeria
-              </p>
-              <p className="flex gap-3">
-                <Phone className="h-5 w-5 text-[var(--red)]" /> +234 904 611
-                6130
-              </p>
-              <p className="flex gap-3">
-                <Mail className="h-5 w-5 text-[var(--red)]" />{" "}
-                hello@dailycrisps.ng
-              </p>
-              <p className="flex gap-3">
-                <Clock className="h-5 w-5 text-[var(--red)]" /> Daily: 11:00 AM
-                - 10:30 PM
-              </p>
-            </div>
+            <address className="mt-6 space-y-5 font-barlow not-italic text-[var(--text-muted)]">
+              <a href="https://maps.google.com/?q=No+36+Inyang+Street,+Calabar,+Cross+River+State,+Nigeria" className="flex gap-3 hover:text-[var(--red)]"><MapPin className="h-5 w-5 shrink-0 text-[var(--red)]" /> {business.streetAddress}, {business.locality}, {business.region}, Nigeria</a>
+              <a href={`tel:${business.phoneE164}`} className="flex gap-3 hover:text-[var(--red)]"><Phone className="h-5 w-5 shrink-0 text-[var(--red)]" /> {business.phoneDisplay}</a>
+              <a href={`mailto:${business.email}`} className="flex gap-3 hover:text-[var(--red)]"><Mail className="h-5 w-5 shrink-0 text-[var(--red)]" /> {business.email}</a>
+              <div className="flex gap-3"><Clock className="mt-1 h-5 w-5 shrink-0 text-[var(--red)]" /><div>{businessHours.map((hours) => <p key={hours.label}>{hours.label}: {hours.display}</p>)}</div></div>
+            </address>
             <div className="mt-6 flex gap-3 text-[var(--charcoal)]">
               {["IG", "FB", "X"].map((label) => (
                 <span
@@ -124,7 +131,9 @@ export default function ContactPage() {
             </div>
             <form className="mt-10 space-y-4" onSubmit={submitContact} noValidate>
               <div>
+                <label htmlFor="contact-name" className="mb-1.5 block font-barlow text-sm font-medium text-[var(--charcoal)]">Name</label>
                 <input
+                  id="contact-name"
                   placeholder="Name"
                   value={form.name}
                   onBlur={() => setTouched((current) => ({ ...current, name: true }))}
@@ -136,7 +145,9 @@ export default function ContactPage() {
                 {visibleErrors.name ? <p className="mt-1 font-barlow text-xs text-[var(--red)]">{visibleErrors.name}</p> : null}
               </div>
               <div>
+                <label htmlFor="contact-email" className="mb-1.5 block font-barlow text-sm font-medium text-[var(--charcoal)]">Email</label>
                 <input
+                  id="contact-email"
                   placeholder="Email"
                   value={form.email}
                   onBlur={() => setTouched((current) => ({ ...current, email: true }))}
@@ -149,7 +160,9 @@ export default function ContactPage() {
                 {visibleErrors.email ? <p className="mt-1 font-barlow text-xs text-[var(--red)]">{visibleErrors.email}</p> : null}
               </div>
               <div>
+                <label htmlFor="contact-phone" className="mb-1.5 block font-barlow text-sm font-medium text-[var(--charcoal)]">Phone</label>
                 <input
+                  id="contact-phone"
                   placeholder="Phone"
                   value={form.phone}
                   onBlur={() => setTouched((current) => ({ ...current, phone: true }))}
@@ -163,7 +176,9 @@ export default function ContactPage() {
                 {visibleErrors.phone ? <p className="mt-1 font-barlow text-xs text-[var(--red)]">{visibleErrors.phone}</p> : null}
               </div>
               <div>
+                <label htmlFor="contact-message" className="mb-1.5 block font-barlow text-sm font-medium text-[var(--charcoal)]">Message</label>
                 <textarea
+                  id="contact-message"
                   placeholder="Message"
                   rows={5}
                   value={form.message}
@@ -176,11 +191,10 @@ export default function ContactPage() {
               </div>
               {sent ? (
                 <p className="font-barlow text-sm font-semibold text-[var(--red)]">
-                  Message validated. Daily Crisps will respond shortly.
+                  WhatsApp opened with your message ready to send.
                 </p>
               ) : null}
-              {/* TODO: connect to backend - POST /api/contact */}
-              <Button className="w-full">Send Message</Button>
+              <Button className="w-full">Send via WhatsApp</Button>
             </form>
           </div>
           <div className="overflow-hidden rounded-[1.75rem] bg-light-grey shadow-[0_18px_45px_rgba(26,26,26,0.08)]">
@@ -196,7 +210,8 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }

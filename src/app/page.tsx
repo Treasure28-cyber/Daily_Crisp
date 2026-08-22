@@ -1,8 +1,14 @@
 import Image from "next/image";
-import Link from "next/link";
+import type { Metadata } from "next";
 import { SectionHeader } from "@/components/SectionHeader";
 import { TopSellers } from "@/components/TopSellers";
 import { RoyalExperienceCarousel } from "@/components/RoyalExperienceCarousel";
+import { LinkButton } from "@/components/Button";
+import { RestaurantFaq } from "@/components/RestaurantFaq";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const testimonials = [
   {
@@ -28,54 +34,52 @@ const testimonials = [
 export default function Home() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-white px-6 pb-16 pt-32 sm:pt-36 lg:py-28">
-        <div className="absolute inset-y-0 right-0 -z-10 hidden w-[58%] bg-gradient-to-l from-red-50 via-white to-transparent lg:block" />
-        <div className="mx-auto grid min-h-[calc(100vh-88px)] w-full max-w-7xl items-center gap-12 lg:grid-cols-[0.86fr_1fr]">
-          <div className="max-w-3xl">
-            <span className="inline-flex rounded-full border border-red-100 bg-red-50 px-4 py-2 font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-[var(--red)] shadow-sm">
-              &#10022; Calabar&apos;s #1 Crispy Chicken Spot
+      <section className="relative isolate overflow-hidden bg-black px-6 pb-10 pt-24 text-white sm:pb-12 sm:pt-28 lg:py-16">
+        <Image
+          src="/daily-crisps-interior-hero-v2.png"
+          alt=""
+          fill
+          preload
+          sizes="100vw"
+          className="-z-30 object-cover object-center"
+        />
+        <div className="absolute inset-0 -z-20 bg-gradient-to-r from-black/95 via-black/75 to-black/30" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/65 via-transparent to-black/20" />
+        <div className="mx-auto grid min-h-[calc(100svh-72px)] w-full max-w-7xl items-center">
+          <div className="max-w-2xl">
+            <span className="inline-flex rounded-full border border-white/20 bg-black/25 px-3.5 py-1.5 font-barlow text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-red-300 shadow-sm backdrop-blur-md">
+              &#10022; Calabar&apos;s Crispy Chicken
             </span>
-            <h1 className="mt-6 max-w-3xl font-playfair text-5xl font-black leading-[1.02] text-[var(--charcoal)] md:text-7xl">
+            <h1 className="mt-4 max-w-2xl font-playfair text-[2.55rem] font-black leading-[1.02] text-white drop-shadow-lg sm:text-5xl md:text-6xl">
               Golden Crunch.
               <br />
-              <span className="text-[var(--red)]">Pure Local Spice.</span>
-              <br />
-              Crafted with Pride.
+              <span className="text-red-400">Calabar Spice.</span>
             </h1>
-            <p className="mt-6 max-w-[520px] font-barlow text-lg font-light leading-8 text-[var(--text-muted)]">
-              Daily Crisps serves Calabar&apos;s favorite golden chicken, bold
-              rice plates, and local soups from our Inyang Street kitchen,
-              always hot, clean, and deeply seasoned.
+            <p className="mt-4 max-w-[500px] font-barlow text-sm font-light leading-6 text-white/80 sm:text-base sm:leading-7">
+              Crispy chicken, bold rice and local favourites—served hot from
+              our Inyang Street kitchen.
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link href="/menu">
-                <button
-                  className="rounded-full bg-[#C0151F] px-8 py-4 font-barlow text-sm font-semibold uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 hover:bg-[#E8202C]"
-                  style={{ animation: "pulseRed 2.5s infinite" }}
-                >
-                  Explore Our Menu
-                </button>
-              </Link>
-              <Link href="/order">
-                <button className="rounded-full border-2 border-[#C0151F] bg-transparent px-8 py-4 font-barlow text-sm font-semibold uppercase tracking-widest text-[#C0151F] transition-all hover:-translate-y-0.5 hover:bg-[#C0151F] hover:text-white">
-                  Order Now
-                </button>
-              </Link>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <LinkButton href="/menu" pulse className="w-full px-7 py-3.5 text-xs sm:w-auto">
+                Explore Our Menu
+              </LinkButton>
+              <LinkButton href="/order" variant="outline" className="w-full border-2 px-7 py-3.5 text-xs sm:w-auto">
+                Order Now
+              </LinkButton>
             </div>
-            <div className="mt-10 grid max-w-2xl gap-4 border-t border-[var(--mid-grey)] pt-6 font-barlow text-sm text-[var(--text-muted)] sm:grid-cols-3">
-              <strong className="text-[var(--charcoal)]">
+            <div className="mt-6 hidden max-w-2xl gap-4 border-t border-white/20 pt-4 font-barlow text-xs text-white/75 sm:grid sm:grid-cols-3">
+              <strong className="text-white">
                 100% Fresh Local Birds
               </strong>
-              <strong className="text-[var(--charcoal)]">
+              <strong className="text-white">
                 15+ Signature Spices
               </strong>
-              <strong className="text-[var(--charcoal)]">
-                4.9&#9733; Over 2,500 Reviews
-              </strong>
+              <strong className="text-white">Order Directly on WhatsApp</strong>
             </div>
           </div>
-          <div className="relative mx-auto flex aspect-square w-full max-w-[520px] items-center justify-center sm:max-w-[600px] lg:max-w-[680px] lg:justify-end">
-            <div className="absolute inset-[8%] rounded-full bg-red-50 blur-3xl" />
+          {/* Food cutout intentionally disabled so the branded restaurant interior remains the sole hero image.
+          <div className="relative mx-auto flex aspect-square w-full max-w-[460px] items-center justify-center sm:max-w-[560px] lg:max-w-[640px] lg:justify-end">
+            <div className="absolute inset-[12%] rounded-full bg-red-500/20 blur-3xl" />
             <Image
               src="/hero-bg-removebg.png"
               alt="Daily Crisps jollof rice with grilled chicken, plantain, and salad"
@@ -83,24 +87,22 @@ export default function Home() {
               height={900}
               preload
               sizes="(max-width: 640px) 88vw, (max-width: 1024px) 58vw, 48vw"
-              className="relative z-10 h-auto w-full object-contain drop-shadow-[0_30px_55px_rgba(26,26,26,0.22)]"
+              className="relative z-10 h-auto w-full object-contain drop-shadow-[0_30px_55px_rgba(0,0,0,0.5)]"
             />
           </div>
-          <p className="mt-4 text-center text-sm font-barlow font-light leading-6 text-muted sm:hidden animate-fade-in">
-            Craving something delicious?{" "}
-            <span className="block text-red">Order Now.</span>
-          </p>
+          */}
         </div>
       </section>
 
       <TopSellers />
 
-      <section className="bg-[var(--off-white)] px-6 py-20">
+      <section className="bg-black px-6 py-20 text-white">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
             label="Crispy Love"
             title="What Calabar Folk are Saying"
             body="Read true reviews from real local families, foodies, and university students who visit our Inyang Street store."
+            tone="dark"
           />
           <div className="mt-12 flex w-full flex-col items-center justify-center gap-0 md:flex-row">
             {testimonials.map((item, index) => (
@@ -112,8 +114,8 @@ export default function Home() {
                       style={{
                         width: "60px",
                         height: "1.5px",
-                        background: "#C0151F",
-                        opacity: 0.4,
+                        background: "#E8202C",
+                        opacity: 0.65,
                       }}
                     />
                     <div
@@ -121,8 +123,8 @@ export default function Home() {
                       style={{
                         width: "1.5px",
                         height: "100px",
-                        background: "#C0151F",
-                        opacity: 0.4,
+                        background: "#E8202C",
+                        opacity: 0.65,
                         flexShrink: 0,
                       }}
                     />
@@ -135,14 +137,14 @@ export default function Home() {
                   <p className="mt-2 font-barlow text-sm text-amber-500">
                     &#9733;&#9733;&#9733;&#9733;&#9733;
                   </p>
-                  <p className="mt-5 max-w-[280px] font-barlow text-sm font-light leading-7 text-[var(--text-muted)]">
+                  <p className="mt-5 max-w-[280px] font-barlow text-sm font-light leading-7 text-white/70">
                     {item.quote}
                   </p>
                   <div className="mt-6">
-                    <h3 className="font-playfair text-xl font-bold text-[var(--charcoal)]">
+                    <h3 className="font-playfair text-xl font-bold text-white">
                       {item.name}
                     </h3>
-                    <p className="font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-[var(--red)]">
+                    <p className="font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-red-400">
                       {item.role}
                     </p>
                   </div>
@@ -176,15 +178,15 @@ export default function Home() {
               for just &#8358;12,500. Feeds up to 3 people.
             </p>
             <div className="flex justify-center sm:justify-start">
-              <Link href="/contact">
-                <button className="rounded-full bg-[#C0151F] px-8 py-4 text-sm font-semibold uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 hover:bg-[#E8202C]">
-                  Contact our Chefs
-                </button>
-              </Link>
+              <LinkButton href="/contact" className="px-8 py-4 text-sm">
+                Contact our Chefs
+              </LinkButton>
             </div>
           </div>
         </div>
       </section>
+
+      <RestaurantFaq />
     </>
   );
 }

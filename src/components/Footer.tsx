@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { business, businessHours } from "@/data/business";
 
 const explore = [
   ["Home Page", "/"],
@@ -22,11 +23,8 @@ function FooterHeading({ children }: { children: string }) {
 export function Footer() {
   return (
     <footer
-      className="relative text-white"
+      className="relative bg-black text-white"
       style={{
-        background: "rgba(10, 10, 10, 0.88)",
-        backdropFilter: "blur(24px)",
-        WebkitBackdropFilter: "blur(24px)",
         borderTop: "1px solid rgba(255,255,255,0.07)",
       }}
     >
@@ -70,18 +68,18 @@ export function Footer() {
         <div>
           <FooterHeading>Opening Hours</FooterHeading>
           <div className="mt-6 space-y-4 font-barlow text-sm text-white/65">
-            <p>Monday - Friday: <strong className="text-white">11:00 AM - 10:30 PM</strong></p>
-            <p>Saturday: <strong className="text-white">11:00 AM - 11:00 PM</strong></p>
-            <p>Sunday: <strong className="text-white">12:30 PM - 10:00 PM</strong></p>
+            {businessHours.map((hours) => (
+              <p key={hours.label}>{hours.label}: <strong className="text-white">{hours.display}</strong></p>
+            ))}
           </div>
         </div>
         <div>
           <FooterHeading>Address & Location</FooterHeading>
-          <div className="mt-6 space-y-4 font-barlow text-sm leading-6 text-white/65">
-            <p className="flex gap-3"><MapPin className="mt-1 h-4 w-4 text-[var(--red-light)]" /> No. 36 Inyang Street, Calabar, Cross River State, Nigeria</p>
-            <p className="flex gap-3"><Phone className="h-4 w-4 text-[var(--red-light)]" /> +234 904 611 6130</p>
-            <p className="flex gap-3"><Mail className="h-4 w-4 text-[var(--red-light)]" /> hello@dailycrisps.ng</p>
-          </div>
+          <address className="mt-6 space-y-4 font-barlow text-sm not-italic leading-6 text-white/65">
+            <a href="https://maps.google.com/?q=No+36+Inyang+Street,+Calabar,+Cross+River+State,+Nigeria" className="flex gap-3 transition hover:text-white"><MapPin className="mt-1 h-4 w-4 shrink-0 text-[var(--red-light)]" /> {business.streetAddress}, {business.locality}, {business.region}, Nigeria</a>
+            <a href={`tel:${business.phoneE164}`} className="flex gap-3 transition hover:text-white"><Phone className="h-4 w-4 shrink-0 text-[var(--red-light)]" /> {business.phoneDisplay}</a>
+            <a href={`mailto:${business.email}`} className="flex gap-3 transition hover:text-white"><Mail className="h-4 w-4 shrink-0 text-[var(--red-light)]" /> {business.email}</a>
+          </address>
         </div>
       </div>
       <div className="relative z-10 border-t border-white/10">

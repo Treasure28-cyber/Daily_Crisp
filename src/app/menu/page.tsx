@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { MenuCard } from "@/components/MenuCard";
+import { PageHero } from "@/components/PageHero";
 import { categories, menuItems, type MenuCategory } from "@/data/menu";
 
 export default function MenuPage() {
@@ -10,13 +11,11 @@ export default function MenuPage() {
 
   return (
     <>
-      <section className="bg-[var(--off-white)] px-6 py-16 text-center">
-        <p className="font-barlow text-xs font-semibold uppercase tracking-[0.2em] text-[var(--red)]">Ultimate Menu</p>
-        <h1 className="mt-3 font-playfair text-5xl font-bold text-[var(--charcoal)]">Our Full Menu</h1>
-        <p className="mx-auto mt-4 max-w-2xl font-barlow text-lg font-light leading-8 text-[var(--text-muted)]">
-          Browse the real Daily Crisps kitchen list, from rice plates and proteins to soups with proper Calabar soul.
-        </p>
-      </section>
+      <PageHero
+        eyebrow="Ultimate Menu"
+        title="Our Full Menu"
+        description="Browse the real Daily Crisps kitchen list, from rice plates and proteins to soups with proper Calabar soul."
+      />
       <section className="bg-white px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 flex flex-wrap justify-center gap-3">
@@ -24,6 +23,7 @@ export default function MenuPage() {
               <button
                 key={category}
                 onClick={() => setActive(category)}
+                aria-pressed={active === category}
                 className={`rounded-full border px-5 py-3 font-barlow text-xs font-semibold uppercase tracking-[0.15em] transition ${
                   active === category
                     ? "border-[var(--red)] bg-[var(--red)] text-white"

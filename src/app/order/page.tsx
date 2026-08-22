@@ -16,6 +16,8 @@ import {
 import { Button } from "@/components/Button";
 import type { CartItem } from "@/components/CartProvider";
 import { useCart } from "@/components/CartProvider";
+import { PageHero } from "@/components/PageHero";
+import { business } from "@/data/business";
 import { formatPrice } from "@/data/menu";
 
 type CheckoutForm = {
@@ -27,7 +29,6 @@ type CheckoutForm = {
 
 type FormErrors = Partial<Record<keyof CheckoutForm, string>>;
 
-const WHATSAPP_NUMBER = "2349046116130";
 
 function sanitizeName(value: string) {
   return value.replace(/[0-9]/g, "");
@@ -339,7 +340,7 @@ export default function OrderPage() {
     ].join("\n");
 
     window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,
+      `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(message)}`,
       "_blank",
       "noopener,noreferrer",
     );
@@ -356,17 +357,14 @@ export default function OrderPage() {
   }
 
   return (
-    <section className="overflow-x-hidden bg-[var(--off-white)] px-6 py-10 md:py-16">
+    <>
+      <PageHero
+        eyebrow="Fast Kitchen Queue"
+        title="Order Now"
+        description="Your Daily Crisps favourites are just a few taps away. Review your basket and send your order directly to our kitchen."
+      />
+      <section className="overflow-x-hidden bg-[var(--off-white)] px-6 py-10 md:py-16">
       <div className="mx-auto w-full max-w-7xl">
-        <div className="mb-8 md:mb-10">
-          <p className="font-barlow text-xs font-semibold uppercase tracking-[0.2em] text-[var(--red)]">
-            Fast Kitchen Queue
-          </p>
-          <h1 className="mt-3 font-playfair text-5xl font-bold text-[var(--charcoal)]">
-            Order Now
-          </h1>
-        </div>
-
         {/*
           Menu listing intentionally disabled for the simplified checkout flow.
           Keep this section available for future use.
@@ -517,6 +515,7 @@ export default function OrderPage() {
           </aside>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 }

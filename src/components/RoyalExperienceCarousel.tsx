@@ -101,7 +101,7 @@ export function RoyalExperienceCarousel() {
             src={images[0].src}
             alt={images[0].alt}
             fill
-            sizes="(min-width: 768px) 100vw, 45vw"
+            sizes="(min-width: 1280px) 275px, (min-width: 768px) 24vw, 0px"
             className="object-cover"
           />
         </div>
@@ -112,7 +112,7 @@ export function RoyalExperienceCarousel() {
             src={images[1].src}
             alt={images[1].alt}
             fill
-            sizes="(min-width: 768px) 100vw, 45vw"
+            sizes="(min-width: 1280px) 275px, (min-width: 768px) 24vw, 0px"
             className="object-cover"
           />
         </div>
@@ -121,7 +121,7 @@ export function RoyalExperienceCarousel() {
             src={images[2].src}
             alt={images[2].alt}
             fill
-            sizes="(min-width: 768px) 100vw, 45vw"
+            sizes="(min-width: 1280px) 275px, (min-width: 768px) 24vw, 0px"
             className="object-cover"
           />
         </div>
