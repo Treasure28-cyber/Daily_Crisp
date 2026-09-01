@@ -18,8 +18,8 @@ export function OrderButton({ item, children = "Order Now", className = "" }: Or
   }
 
   return (
-    <Button type="button" onClick={handleClick} className={className}>
-      {children}
+    <Button type="button" onClick={handleClick} className={className} disabled={item.available === false}>
+      {item.available === false ? "Sold out" : children}
     </Button>
   );
 }

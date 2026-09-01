@@ -5,8 +5,8 @@ import { OrderButton } from "./OrderButton";
 
 export function MenuCard({ item }: { item: MenuItem }) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-white/80 bg-white/55 p-2 shadow-[0_18px_45px_rgba(26,26,26,0.08)] ring-1 ring-white/70 backdrop-blur-2xl transition hover:-translate-y-1 hover:bg-white/70 hover:shadow-[0_22px_55px_rgba(26,26,26,0.12)]">
-      <div className="relative aspect-square overflow-hidden rounded-xl bg-[var(--light-grey)]">
+    <article className="group overflow-hidden rounded-2xl border border-[var(--mid-grey)] bg-white transition hover:border-red-200 hover:shadow-[0_14px_34px_rgba(112,41,41,0.08)]">
+      <div className="relative aspect-[4/3] overflow-hidden bg-[var(--light-grey)]">
         <Image
           src={item.image}
           alt={item.imageAlt}
@@ -16,22 +16,24 @@ export function MenuCard({ item }: { item: MenuItem }) {
           style={{ objectPosition: item.imagePosition }}
         />
         {item.badge ? (
-          <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 font-barlow text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-[var(--red)] shadow">
+          <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 font-barlow text-xs font-semibold uppercase tracking-[0.12em] text-[var(--red)] shadow">
             {item.badge}
           </span>
         ) : null}
+        {item.available === false ? <span className="absolute inset-0 flex items-center justify-center bg-white/80 font-barlow text-sm font-bold uppercase tracking-[0.14em] text-[var(--red)]">Sold out today</span> : null}
       </div>
-      <div className="relative px-4 pb-4 pt-5 text-center">
-        <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-white/90" />
-        <h3 className="font-playfair text-2xl font-bold leading-tight text-[var(--charcoal)]">{item.name}</h3>
-        <div className="mt-3 flex flex-wrap items-center justify-center gap-2 font-barlow text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-[var(--red)]">
+      <div className="px-5 pb-5 pt-4">
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="font-playfair text-xl font-bold leading-tight text-[var(--charcoal)]">{item.name}</h3>
+          <p className="shrink-0 font-barlow text-lg font-bold text-[var(--red)]">{formatPrice(item.price)}</p>
+        </div>
+        <div className="mt-2 flex flex-wrap items-center gap-2 font-barlow text-xs font-semibold uppercase tracking-[0.13em] text-[var(--text-muted)]">
           <span>{item.emoji}</span>
           <span>{item.category}</span>
         </div>
-        <p className="mt-3 font-barlow text-xl font-bold text-[var(--red)]">{formatPrice(item.price)}</p>
-        <div className="mt-4">
-          <OrderButton item={item} className="px-5 py-2.5">
-            Order Now
+        <div className="mt-4 flex justify-end">
+          <OrderButton item={item} className="min-w-40 px-6 py-2.5">
+            Add to order
           </OrderButton>
         </div>
       </div>

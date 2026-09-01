@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import type { ReactNode } from "react";
+import { ShoppingCart } from "lucide-react";
 import {
   createContext,
   useCallback,
@@ -123,17 +125,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCart([]);
   }, []);
 
+  const count = cart.reduce((sum, entry) => sum + entry.qty, 0);
+
   const value = useMemo(
     () => ({
       cart,
-      count: cart.reduce((sum, entry) => sum + entry.qty, 0),
+      count,
       addItem,
       subtractItem,
       removeItem,
       clearCart,
       showToast,
     }),
-    [addItem, cart, clearCart, removeItem, subtractItem, showToast],
+    [addItem, cart, clearCart, count, removeItem, subtractItem, showToast],
   );
 
   return (
@@ -151,6 +155,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
           {toast ? <>&#10003; {toast.message}</> : <>&#10003; Added to Order</>}
         </div>
       </div>
+      {count > 0 ? (
+        <Link
+          href="/order"
+          aria-label={`Open cart with ${count} ${count === 1 ? "item" : "items"}`}
+          className="fixed right-0 top-1/2 z-[70] flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-l-2xl bg-[var(--red)] text-white shadow-[0_14px_35px_rgba(143,20,27,0.3)] transition hover:w-[4.5rem] hover:bg-[var(--red-light)] focus-visible:outline-4 focus-visible:outline-red-200"
+        >
+          <ShoppingCart className="h-6 w-6" />
+          <span className="absolute left-1 top-1 flex h-6 min-w-6 items-center justify-center rounded-full bg-white px-1.5 font-barlow text-xs font-bold text-[var(--red)] shadow ring-1 ring-red-100">
+            {count}
+          </span>
+        </Link>
+      ) : null}
     </CartContext.Provider>
   );
 }

@@ -14,7 +14,7 @@ export function TopSellers() {
   const items = ["Peppered Chicken", "Jollof Rice", "Afang Soup"].map((name) => menuItems.find((item) => item.name === name)!);
 
   return (
-    <section className="bg-white px-6 py-20">
+    <section className="bg-white px-6 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
@@ -25,10 +25,10 @@ export function TopSellers() {
             View All Menu Items &rarr;
           </Link>
         </div>
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3">
           {items.map((item) => (
-            <article key={item.id} className="group overflow-hidden rounded-2xl border border-white/80 bg-white/55 p-2 shadow-[0_18px_45px_rgba(26,26,26,0.08)] ring-1 ring-white/70 backdrop-blur-2xl transition hover:-translate-y-1 hover:bg-white/70 hover:shadow-[0_22px_55px_rgba(26,26,26,0.12)]">
-              <div className="relative aspect-square overflow-hidden rounded-xl bg-[var(--light-grey)]">
+            <article key={item.id} className="group overflow-hidden rounded-2xl border border-[var(--mid-grey)] bg-white transition hover:border-red-200 hover:shadow-[0_14px_34px_rgba(112,41,41,0.08)]">
+              <div className="relative aspect-[4/3] overflow-hidden bg-[var(--light-grey)]">
                 <Image
                   src={item.image}
                   alt={item.imageAlt}
@@ -37,22 +37,19 @@ export function TopSellers() {
                   className="object-cover transition duration-500 group-hover:scale-105"
                   style={{ objectPosition: item.imagePosition }}
                 />
-                <span className="absolute left-3 top-3 rounded-full bg-[var(--red)] px-3 py-1 font-barlow text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-white shadow">
+                <span className="absolute left-3 top-3 rounded-full bg-[var(--red)] px-3 py-1 font-barlow text-xs font-semibold uppercase tracking-[0.12em] text-white shadow">
                   Bestseller
                 </span>
               </div>
-              <div className="relative px-4 pb-4 pt-5 text-center">
-                <div className="pointer-events-none absolute inset-x-4 top-0 h-px bg-white/90" />
-                <p className="font-barlow text-sm text-amber-500">
+              <div className="px-5 pb-5 pt-4">
+                <p className="font-barlow text-xs text-amber-500">
                   &#9733;&#9733;&#9733;&#9733;&#9733; <span className="text-[var(--text-muted)]">4.9 &middot; 320 reviews</span>
                 </p>
-                <h3 className="mt-3 font-playfair text-2xl font-bold text-[var(--charcoal)]">{item.name}</h3>
-                <p className="mt-3 font-barlow text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-[var(--red)]">{item.category}</p>
-                <p className="mx-auto mt-2 line-clamp-2 max-w-[240px] font-barlow text-sm font-light leading-6 text-[var(--text-muted)]">{descriptions[item.name]}</p>
-                <p className="mt-3 font-barlow text-xl font-bold text-[var(--red)]">{formatPrice(item.price)}</p>
+                <div className="mt-3 flex items-start justify-between gap-3"><h3 className="font-playfair text-xl font-bold text-[var(--charcoal)]">{item.name}</h3><p className="shrink-0 font-barlow text-lg font-bold text-[var(--red)]">{formatPrice(item.price)}</p></div>
+                <p className="mt-2 font-barlow text-sm font-light leading-6 text-[var(--text-muted)]">{descriptions[item.name]}</p>
                 <div className="mt-4">
-                  <OrderButton item={item} className="px-5 py-2.5">
-                    Quick Order
+                  <OrderButton item={item} className="w-full px-5 py-2.5">
+                    Add to order
                   </OrderButton>
                 </div>
               </div>

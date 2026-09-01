@@ -2,14 +2,15 @@
 @import "../styles/animations.css";
 
 :root {
-  --red: #C0151F;
-  --red-light: #E8202C;
-  --charcoal: #1A1A1A;
+  --red: #D71920;
+  --red-light: #EF2B32;
+  --red-soft: #FFF1F1;
+  --charcoal: #282323;
   --white: #FFFFFF;
-  --off-white: #F9F6F3;
-  --light-grey: #F2F0ED;
-  --mid-grey: #E0DDD8;
-  --text-muted: #7A7670;
+  --off-white: #FFF9F7;
+  --light-grey: #F8F3F1;
+  --mid-grey: #EADFDA;
+  --text-muted: #746B68;
   --background: var(--white);
   --foreground: var(--charcoal);
 }
@@ -38,6 +39,29 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-barlow), Arial, Helvetica, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+/* Accessible type floor: supporting copy should remain comfortably readable
+   across menus, forms, cards, navigation, and mobile screens. */
+.text-xs {
+  font-size: 0.875rem !important;
+  line-height: 1.4rem !important;
+}
+
+.text-sm {
+  font-size: 1rem !important;
+  line-height: 1.65rem !important;
+}
+
+.text-base {
+  font-size: 1.0625rem !important;
+  line-height: 1.75rem !important;
+}
+
+.font-light {
+  font-weight: 400 !important;
 }
 
 a {

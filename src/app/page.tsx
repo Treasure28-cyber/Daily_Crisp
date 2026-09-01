@@ -34,7 +34,7 @@ const testimonials = [
 export default function Home() {
   return (
     <>
-      <section className="relative isolate overflow-hidden bg-black px-6 pb-10 pt-24 text-white sm:pb-12 sm:pt-28 lg:py-16">
+      <section className="relative isolate overflow-hidden bg-white px-6 pb-10 pt-24 text-white sm:pb-12 sm:pt-28 lg:py-16">
         <Image
           src="/daily-crisps-interior-hero-v2.png"
           alt=""
@@ -43,19 +43,19 @@ export default function Home() {
           sizes="100vw"
           className="-z-30 object-cover object-center"
         />
-        <div className="absolute inset-0 -z-20 bg-gradient-to-r from-black/95 via-black/75 to-black/30" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/65 via-transparent to-black/20" />
+        <div className="absolute inset-0 -z-20 bg-gradient-to-r from-black/65 via-black/42 to-black/30" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/35 via-transparent to-black/15" />
         <div className="mx-auto grid min-h-[calc(100svh-72px)] w-full max-w-7xl items-center">
           <div className="max-w-2xl">
-            <span className="inline-flex rounded-full border border-white/20 bg-black/25 px-3.5 py-1.5 font-barlow text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-red-300 shadow-sm backdrop-blur-md">
+            <span className="inline-flex rounded-full border border-white/25 bg-black/15 px-3.5 py-1.5 font-barlow text-xs font-semibold uppercase tracking-[0.16em] text-red-200 shadow-sm backdrop-blur-md">
               &#10022; Calabar&apos;s Crispy Chicken
             </span>
-            <h1 className="mt-4 max-w-2xl font-playfair text-[2.55rem] font-black leading-[1.02] text-white drop-shadow-lg sm:text-5xl md:text-6xl">
+            <h1 className="mt-4 max-w-2xl font-playfair text-[2.55rem] font-black leading-[1.02] text-white sm:text-5xl md:text-6xl">
               Golden Crunch.
               <br />
-              <span className="text-red-400">Calabar Spice.</span>
+              <span className="text-red-300">Calabar Spice.</span>
             </h1>
-            <p className="mt-4 max-w-[500px] font-barlow text-sm font-light leading-6 text-white/80 sm:text-base sm:leading-7">
+            <p className="mt-4 max-w-[500px] font-barlow text-sm font-light leading-6 text-white/85 sm:text-base sm:leading-7">
               Crispy chicken, bold rice and local favourites—served hot from
               our Inyang Street kitchen.
             </p>
@@ -67,7 +67,7 @@ export default function Home() {
                 Order Now
               </LinkButton>
             </div>
-            <div className="mt-6 hidden max-w-2xl gap-4 border-t border-white/20 pt-4 font-barlow text-xs text-white/75 sm:grid sm:grid-cols-3">
+            <div className="mt-6 hidden max-w-2xl gap-4 border-t border-white/20 pt-4 font-barlow text-xs text-white/80 sm:grid sm:grid-cols-3">
               <strong className="text-white">
                 100% Fresh Local Birds
               </strong>
@@ -96,13 +96,12 @@ export default function Home() {
 
       <TopSellers />
 
-      <section className="bg-black px-6 py-20 text-white">
+      <section className="border-y border-red-100 bg-[var(--off-white)] px-6 py-20 text-[var(--charcoal)]">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
             label="Crispy Love"
             title="What Calabar Folk are Saying"
             body="Read true reviews from real local families, foodies, and university students who visit our Inyang Street store."
-            tone="dark"
           />
           <div className="mt-12 flex w-full flex-col items-center justify-center gap-0 md:flex-row">
             {testimonials.map((item, index) => (
@@ -114,7 +113,7 @@ export default function Home() {
                       style={{
                         width: "60px",
                         height: "1.5px",
-                        background: "#E8202C",
+                        background: "#D71920",
                         opacity: 0.65,
                       }}
                     />
@@ -123,7 +122,7 @@ export default function Home() {
                       style={{
                         width: "1.5px",
                         height: "100px",
-                        background: "#E8202C",
+                        background: "#D71920",
                         opacity: 0.65,
                         flexShrink: 0,
                       }}
@@ -137,11 +136,11 @@ export default function Home() {
                   <p className="mt-2 font-barlow text-sm text-amber-500">
                     &#9733;&#9733;&#9733;&#9733;&#9733;
                   </p>
-                  <p className="mt-5 max-w-[280px] font-barlow text-sm font-light leading-7 text-white/70">
+                  <p className="mt-5 max-w-[330px] font-barlow text-sm font-light leading-7 text-[var(--text-muted)]">
                     {item.quote}
                   </p>
                   <div className="mt-6">
-                    <h3 className="font-playfair text-xl font-bold text-white">
+                    <h3 className="font-playfair text-xl font-bold text-[var(--charcoal)]">
                       {item.name}
                     </h3>
                     <p className="font-barlow text-xs font-semibold uppercase tracking-[0.18em] text-red-400">

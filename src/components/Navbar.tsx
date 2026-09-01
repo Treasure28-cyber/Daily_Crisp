@@ -10,7 +10,6 @@ import { useCart } from "./CartProvider";
 const links = [
   { href: "/", label: "Home" },
   { href: "/menu", label: "Our Menu" },
-  { href: "/order", label: "Order Now" },
   // { href: "/about", label: "Our Story" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -36,9 +35,9 @@ export function Navbar() {
         pathname === "/" ? "-mb-[72px]" : ""
       } ${
         glassNav
-          ? "border-b border-white/60 bg-white/88 py-3 shadow-xl backdrop-blur-xl"
+          ? "border-b border-red-100 bg-white/96 py-3 shadow-[0_8px_24px_rgba(86,31,31,0.06)] backdrop-blur-xl"
           : transparentHome
-            ? "border-b border-white/50 bg-white/78 py-3 shadow-sm backdrop-blur-md"
+            ? "border-b border-white/70 bg-white/90 py-3 shadow-sm backdrop-blur-md"
             : "border-b border-[var(--mid-grey)] bg-white py-3"
       }`}
     >
@@ -86,7 +85,7 @@ export function Navbar() {
           >
             <ShoppingBag className="h-5 w-5" />
             {count > 0 ? (
-              <span className="absolute -right-1 -top-2 flex h-6 min-w-6 items-center justify-center rounded-full bg-[var(--red)] px-1.5 font-barlow text-[0.68rem] font-bold leading-none text-white shadow-[0_8px_18px_rgba(192,21,31,0.35)] ring-2 ring-white">
+              <span className="absolute -right-1 -top-2 flex h-6 min-w-6 items-center justify-center rounded-full bg-[var(--red)] px-1.5 font-barlow text-xs font-bold leading-none text-white shadow-[0_8px_18px_rgba(192,21,31,0.35)] ring-2 ring-white">
                 {count}
               </span>
             ) : null}
@@ -105,7 +104,7 @@ export function Navbar() {
       </nav>
       <div
         id="mobile-navigation"
-        className={`${menuOpen ? "grid" : "hidden"} absolute left-3 right-3 top-[calc(100%+0.75rem)] gap-1 overflow-hidden rounded-3xl border border-white/90 bg-white/90 p-2 shadow-[0_24px_70px_rgba(0,0,0,0.32)] ring-1 ring-black/10 backdrop-blur-2xl lg:hidden`}
+        className={`${menuOpen ? "grid" : "hidden"} absolute left-3 right-3 top-[calc(100%+0.5rem)] gap-1 overflow-hidden rounded-2xl border border-red-100 bg-white p-2 shadow-[0_18px_44px_rgba(86,31,31,0.12)] lg:hidden`}
       >
         {links.map((link, index) => (
           <Link

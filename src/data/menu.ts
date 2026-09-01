@@ -8,6 +8,7 @@ export type MenuItem = {
   image: string;
   imageAlt: string;
   imagePosition?: string;
+  available?: boolean;
 };
 
 export const menuItems: MenuItem[] = [
