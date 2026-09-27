@@ -56,7 +56,7 @@ export default function Home() {
         <div className="mx-auto flex min-h-[720px] max-w-[86rem] items-center px-5 pb-16 pt-32 sm:min-h-[790px] sm:px-8 sm:pt-36">
           <div className="max-w-[680px] animate-fade-in">
             <p className="eyebrow flex items-center gap-3 text-[#ffd39a]"><span className="h-px w-10 bg-[#ffd39a]" /> Freshly prepared in Calabar</p>
-            <h1 id="home-hero-title" className="mt-6 font-playfair text-[3.5rem] font-semibold leading-[1.02] tracking-[-.045em] sm:text-[5.5rem] sm:leading-[.98] lg:text-[6.6rem]">
+            <h1 id="home-hero-title" className="mt-6 font-playfair text-[3.5rem] font-semibold leading-[1.02] tracking-[-.045em] [font-variant-ligatures:none] sm:text-[5.5rem] sm:leading-[.98] lg:text-[6.6rem]">
               Daily Crisps.<br />
               <span className="text-[#ff5b4d]">Come hungry.</span><br />
               Leave satisfied.
