@@ -25,7 +25,7 @@ export function DealBanner() {
             Get 4 dynamic crispy chicken tenders, 4 Calabar hot wings, cheesy fries, coleslaw, and 2 chilled locally hand-crafted ginger/zobo beverages for just &#8358;12,500! Feeds up to 3 people.
           </p>
         </div>
-        <LinkButton href="/order" className="relative shrink-0 rounded-full border-white bg-white px-8 py-4 text-[#C0151F] hover:bg-[var(--charcoal)] hover:text-white">
+        <LinkButton href="/order" variant="inverted" className="relative shrink-0 px-8 py-4">
           Get the Deal Now &rarr;
         </LinkButton>
       </div>

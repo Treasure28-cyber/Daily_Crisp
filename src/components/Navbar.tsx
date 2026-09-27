@@ -3,13 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, ShoppingBag, X } from "lucide-react";
+import { ArrowUpRight, Menu, ShoppingBag, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartProvider";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/menu", label: "Our Menu" },
+  { href: "/menu", label: "Menu" },
   // { href: "/about", label: "Our Story" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -20,7 +20,6 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const transparentHome = pathname === "/" && !scrolled;
-  const glassNav = scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -31,30 +30,26 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-500 ${
-        pathname === "/" ? "-mb-[72px]" : ""
-      } ${
-        glassNav
-          ? "border-b border-red-100 bg-white/96 py-3 shadow-[0_8px_24px_rgba(86,31,31,0.06)] backdrop-blur-xl"
-          : transparentHome
-            ? "border-b border-white/70 bg-white/90 py-3 shadow-sm backdrop-blur-md"
-            : "border-b border-[var(--mid-grey)] bg-white py-3"
+      className={`sticky top-0 z-50 transition-all duration-500 ${pathname === "/" ? "-mb-[82px]" : ""} ${
+        transparentHome
+          ? "border-b border-white/15 bg-[#1d0d08]/35 py-4 text-white backdrop-blur-md"
+          : "border-b border-black/5 bg-[rgba(255,251,246,.94)] py-3 text-[var(--charcoal)] shadow-[0_12px_36px_rgba(61,27,17,.08)] backdrop-blur-xl"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6">
+      <nav className="mx-auto flex max-w-[86rem] items-center justify-between px-5 sm:px-8">
         <Link href="/" className="flex min-w-[90px] items-center gap-3" aria-label="Daily Crisps home">
-          <span className="inline-flex rounded-full bg-transparent transition">
+          <span className={`inline-flex rounded-full p-1 transition ${transparentHome ? "bg-white/95" : "bg-transparent"}`}>
             <Image
               src="/logo.webp"
               alt="Daily Crisps"
               width={104}
               height={108}
-              className="h-12 w-auto object-contain"
+              className="h-11 w-auto object-contain"
               priority
             />
           </span>
         </Link>
-        <div className="hidden items-center gap-8 lg:flex">
+        <div className="hidden items-center gap-9 lg:flex">
           {links.map((link) => {
             const active = pathname === link.href;
             return (
@@ -63,13 +58,13 @@ export function Navbar() {
                 href={link.href}
                 className={`group relative font-barlow text-sm font-medium transition ${
                   active
-                    ? "text-[var(--red-light)]"
-                    : "text-[var(--charcoal)] hover:text-[var(--red)]"
+                    ? transparentHome ? "text-white" : "text-[var(--red)]"
+                    : transparentHome ? "text-white/75 hover:text-white" : "text-[var(--charcoal)] hover:text-[var(--red)]"
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute -bottom-2 left-0 h-0.5 bg-[var(--red)] transition-all ${
+                  className={`absolute -bottom-2 left-0 h-px transition-all ${transparentHome ? "bg-white" : "bg-[var(--red)]"} ${
                     active ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
@@ -81,7 +76,7 @@ export function Navbar() {
           <Link
             href="/order"
             aria-label="Open order page"
-            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--mid-grey)] text-[var(--charcoal)] transition hover:border-[var(--red)] hover:bg-white hover:text-[var(--red)]"
+            className={`relative inline-flex h-11 w-11 items-center justify-center rounded-full border transition ${transparentHome ? "border-white/35 text-white hover:border-white hover:bg-white hover:text-[var(--red)]" : "border-[var(--mid-grey)] text-[var(--charcoal)] hover:border-[var(--red)] hover:bg-white hover:text-[var(--red)]"}`}
           >
             <ShoppingBag className="h-5 w-5" />
             {count > 0 ? (
@@ -90,13 +85,19 @@ export function Navbar() {
               </span>
             ) : null}
           </Link>
+          <Link
+            href="/order"
+            className="hidden items-center gap-2 rounded-full bg-[var(--red)] px-5 py-3 font-barlow text-xs font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--red-dark)] sm:inline-flex"
+          >
+            Order now <ArrowUpRight className="h-4 w-4" />
+          </Link>
           <button
             type="button"
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             onClick={() => setMenuOpen((open) => !open)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--mid-grey)] bg-white/80 text-[var(--charcoal)] transition hover:border-[var(--red)] hover:text-[var(--red)] lg:hidden"
+            className={`inline-flex h-11 w-11 items-center justify-center rounded-full border transition lg:hidden ${transparentHome ? "border-white/35 bg-white/10 text-white hover:border-white" : "border-[var(--mid-grey)] bg-white/80 text-[var(--charcoal)] hover:border-[var(--red)] hover:text-[var(--red)]"}`}
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -104,7 +105,7 @@ export function Navbar() {
       </nav>
       <div
         id="mobile-navigation"
-        className={`${menuOpen ? "grid" : "hidden"} absolute left-3 right-3 top-[calc(100%+0.5rem)] gap-1 overflow-hidden rounded-2xl border border-red-100 bg-white p-2 shadow-[0_18px_44px_rgba(86,31,31,0.12)] lg:hidden`}
+        className={`${menuOpen ? "grid" : "hidden"} absolute left-3 right-3 top-[calc(100%+0.5rem)] gap-1 overflow-hidden rounded-2xl border border-red-100 bg-[var(--off-white)] p-2 shadow-[0_18px_44px_rgba(86,31,31,0.12)] lg:hidden`}
       >
         {links.map((link, index) => (
           <Link
@@ -121,6 +122,13 @@ export function Navbar() {
             {link.label}
           </Link>
         ))}
+        <Link
+          href="/order"
+          onClick={() => setMenuOpen(false)}
+          className="mt-1 rounded-xl bg-[var(--red)] px-5 py-4 text-center font-barlow text-sm font-semibold uppercase tracking-[0.12em] text-white"
+        >
+          Start an order
+        </Link>
       </div>
     </header>
   );

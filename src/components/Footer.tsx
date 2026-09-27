@@ -1,80 +1,86 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { business, businessHours } from "@/data/business";
 
 const explore = [
-  ["Home Page", "/"],
-  ["Ultimate Menu", "/menu"],
-  ["Order Online", "/order"],
-  // ["Our Story", "/about"],
-  ["Get In Touch", "/contact"],
+  ["Home", "/"],
+  ["Menu", "/menu"],
+  ["Order online", "/order"],
+  ["Visit & contact", "/contact"],
 ];
 
 function FooterHeading({ children }: { children: string }) {
-  return (
-    <h3 className="font-playfair text-xl font-bold text-white">
-      {children}
-      <span className="mt-3 block h-0.5 w-10 bg-white/65" />
-    </h3>
-  );
+  return <h3 className="eyebrow text-[#f7bd7d]">{children}</h3>;
 }
 
 export function Footer() {
   return (
-    <footer className="relative bg-[var(--red)] text-white">
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <div className="flex items-center gap-3">
-            <span className="inline-flex rounded-full bg-white px-2 py-1">
-              <Image src="/logo.webp" alt="Daily Crisps logo" width={90} height={70} className="h-12 w-auto object-contain" />
-            </span>
-            <div className="font-barlow text-lg font-semibold tracking-[0.15em]">
-              DAILY <span className="text-white/75">CRISPS</span>
+    <footer className="relative overflow-hidden bg-[#1d0d08] text-white">
+      <div className="absolute -right-24 top-0 h-80 w-80 rounded-full bg-[var(--red)]/12 blur-3xl" aria-hidden="true" />
+      <div className="relative mx-auto max-w-[86rem] px-5 pb-8 pt-16 sm:px-8 sm:pt-20">
+        <div className="grid gap-14 border-b border-white/12 pb-14 lg:grid-cols-[1.35fr_.7fr_.9fr_1fr]">
+          <div className="max-w-md">
+            <Link href="/" className="inline-flex items-center gap-4" aria-label="Daily Crisps home">
+              <span className="inline-flex rounded-full bg-white p-1.5">
+                <Image src="/logo.webp" alt="" width={90} height={70} className="h-14 w-auto object-contain" />
+              </span>
+              <span className="font-barlow text-sm font-semibold uppercase tracking-[0.2em]">Daily Crisps</span>
+            </Link>
+            <p className="mt-7 font-playfair text-3xl font-semibold leading-tight text-white sm:text-4xl">
+              Calabar favourites,<br />made for a proper appetite.
+            </p>
+            <p className="mt-5 max-w-sm text-sm leading-7 text-white/62">
+              Freshly prepared rice dishes, local soups and satisfying proteins from our kitchen on Inyang Street.
+            </p>
+            <Link href="/order" className="mt-7 inline-flex items-center gap-2 border-b border-[#f7bd7d] pb-1 font-barlow text-sm font-semibold uppercase tracking-[0.14em] text-[#f7bd7d]">
+              Start your order <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div>
+            <FooterHeading>Explore</FooterHeading>
+            <nav className="mt-6 flex flex-col items-start gap-3" aria-label="Footer navigation">
+              {explore.map(([label, href]) => (
+                <Link key={href} href={href} className="text-sm text-white/68 transition hover:translate-x-1 hover:text-white">
+                  {label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <div>
+            <FooterHeading>Kitchen hours</FooterHeading>
+            <div className="mt-6 space-y-4 text-sm text-white/68">
+              {businessHours.map((hours) => (
+                <p key={hours.label}>
+                  <span className="block text-white">{hours.label}</span>
+                  {hours.display}
+                </p>
+              ))}
             </div>
           </div>
-          <p className="mt-5 font-barlow text-sm font-light leading-7 text-white/78">
-            Crafting the finest crisp recipes in Calabar with high-grade local chickens, golden secret marinades, and hand-milled peppers. No shortcuts, just pure crispy heritage.
-          </p>
-          <div className="mt-6 flex gap-3">
-            {["IG", "FB", "X"].map((label) => (
-              <span key={label} className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-white/10 font-barlow text-xs font-semibold text-white">
-                {label}
-              </span>
-            ))}
+
+          <div>
+            <FooterHeading>Find us</FooterHeading>
+            <address className="mt-6 space-y-5 text-sm not-italic leading-6 text-white/68">
+              <a href="https://maps.google.com/?q=No+36+Inyang+Street,+Calabar,+Cross+River+State,+Nigeria" className="flex gap-3 transition hover:text-white">
+                <MapPin className="mt-1 h-4 w-4 shrink-0 text-[#f7bd7d]" />
+                {business.streetAddress}, {business.locality}, {business.region}, Nigeria
+              </a>
+              <a href={`tel:${business.phoneE164}`} className="flex gap-3 transition hover:text-white">
+                <Phone className="h-4 w-4 shrink-0 text-[#f7bd7d]" /> {business.phoneDisplay}
+              </a>
+              <a href={`mailto:${business.email}`} className="flex gap-3 transition hover:text-white">
+                <Mail className="h-4 w-4 shrink-0 text-[#f7bd7d]" /> {business.email}
+              </a>
+            </address>
           </div>
         </div>
-        <div>
-          <FooterHeading>Explore</FooterHeading>
-          <div className="mt-6 flex flex-col gap-3 font-barlow text-sm text-white/78">
-            {explore.map(([label, href]) => (
-              <Link key={href} href={href} className="transition hover:text-[var(--red-light)]">
-                {label}
-              </Link>
-            ))}
-          </div>
-        </div>
-        <div>
-          <FooterHeading>Opening Hours</FooterHeading>
-          <div className="mt-6 space-y-4 font-barlow text-sm text-white/78">
-            {businessHours.map((hours) => (
-              <p key={hours.label}>{hours.label}: <strong className="text-white">{hours.display}</strong></p>
-            ))}
-          </div>
-        </div>
-        <div>
-          <FooterHeading>Address & Location</FooterHeading>
-          <address className="mt-6 space-y-4 font-barlow text-sm not-italic leading-6 text-white/78">
-            <a href="https://maps.google.com/?q=No+36+Inyang+Street,+Calabar,+Cross+River+State,+Nigeria" className="flex gap-3 transition hover:text-white"><MapPin className="mt-1 h-4 w-4 shrink-0 text-white" /> {business.streetAddress}, {business.locality}, {business.region}, Nigeria</a>
-            <a href={`tel:${business.phoneE164}`} className="flex gap-3 transition hover:text-white"><Phone className="h-4 w-4 shrink-0 text-white" /> {business.phoneDisplay}</a>
-            <a href={`mailto:${business.email}`} className="flex gap-3 transition hover:text-white"><Mail className="h-4 w-4 shrink-0 text-white" /> {business.email}</a>
-          </address>
-        </div>
-      </div>
-      <div className="relative z-10 border-t border-white/20 bg-[#B90F16]">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-5 font-barlow text-xs text-white/70 md:flex-row md:items-center md:justify-between">
-          <p>© 2026 Daily Crisps. All rights reserved. Made fresh daily in Calabar, Nigeria.</p>
-          <p>Crafted with passion for crispy food lovers ♡</p>
+
+        <div className="flex flex-col gap-3 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; 2026 Daily Crisps. All rights reserved.</p>
+          <p>Freshly prepared in Calabar, Nigeria.</p>
         </div>
       </div>
     </footer>

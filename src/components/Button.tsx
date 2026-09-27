@@ -3,7 +3,7 @@ import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "reac
 
 type ButtonProps = {
   children: ReactNode;
-  variant?: "primary" | "secondary" | "outline" | "ghost";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "inverted" | "light-outline";
   pulse?: boolean;
   className?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
@@ -11,20 +11,22 @@ type ButtonProps = {
 type LinkButtonProps = {
   children: ReactNode;
   href: string;
-  variant?: "primary" | "secondary" | "outline" | "ghost";
+  variant?: "primary" | "secondary" | "outline" | "ghost" | "inverted" | "light-outline";
   pulse?: boolean;
   className?: string;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const styles = {
-  primary: "border border-[var(--red)] bg-[var(--red)] text-white hover:bg-[var(--red-light)]",
-  secondary: "border border-[var(--charcoal)] bg-white text-[var(--charcoal)] hover:bg-[var(--light-grey)]",
-  outline: "border border-[var(--red)] bg-white text-[var(--red)] hover:bg-[var(--red)] hover:text-white",
-  ghost: "border border-transparent bg-transparent text-[var(--charcoal)] hover:text-[var(--red)]",
+  primary: "brand-button--primary",
+  secondary: "brand-button--secondary",
+  outline: "brand-button--outline",
+  ghost: "brand-button--ghost",
+  inverted: "brand-button--inverted",
+  "light-outline": "brand-button--light-outline",
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-barlow text-xs font-semibold uppercase tracking-[0.15em] transition";
+  "brand-button inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-barlow text-xs font-semibold uppercase tracking-[0.15em] transition duration-300";
 
 export function Button({ children, variant = "primary", pulse, className = "", ...props }: ButtonProps) {
   return (

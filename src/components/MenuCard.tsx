@@ -3,36 +3,51 @@ import type { MenuItem } from "@/data/menu";
 import { formatPrice } from "@/data/menu";
 import { OrderButton } from "./OrderButton";
 
+const categoryNotes: Record<MenuItem["category"], string> = {
+  "Main Course": "A comforting base for the plate you are building.",
+  Continental: "A hearty kitchen favourite prepared for your order.",
+  Protein: "The satisfying finish that makes the meal complete.",
+  Soups: "Rich, warming and made for a proper Nigerian meal.",
+};
+
 export function MenuCard({ item }: { item: MenuItem }) {
   return (
-    <article className="group overflow-hidden rounded-2xl border border-[var(--mid-grey)] bg-white transition hover:border-red-200 hover:shadow-[0_14px_34px_rgba(112,41,41,0.08)]">
-      <div className="relative aspect-[4/3] overflow-hidden bg-[var(--light-grey)]">
+    <article className="group flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-[#eaded5] bg-white transition duration-300 hover:-translate-y-1 hover:border-[#ddbcb0] hover:shadow-[0_22px_45px_rgba(70,31,19,.09)]">
+      <div className="relative aspect-square overflow-hidden bg-[var(--light-grey)]">
         <Image
           src={item.image}
           alt={item.imageAlt}
           fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover transition duration-500 group-hover:scale-105"
+          sizes="(min-width: 1024px) 30vw, (min-width: 640px) 48vw, 100vw"
+          className="object-cover transition duration-700 group-hover:scale-[1.04]"
           style={{ objectPosition: item.imagePosition }}
         />
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/35 to-transparent" aria-hidden="true" />
         {item.badge ? (
-          <span className="absolute left-3 top-3 rounded-full bg-white/95 px-3 py-1 font-barlow text-xs font-semibold uppercase tracking-[0.12em] text-[var(--red)] shadow">
+          <span className="absolute left-4 top-4 rounded-full bg-[var(--cream)] px-3 py-1.5 font-barlow text-xs font-semibold uppercase tracking-[0.12em] text-[var(--red-dark)] shadow-sm">
             {item.badge}
           </span>
         ) : null}
-        {item.available === false ? <span className="absolute inset-0 flex items-center justify-center bg-white/80 font-barlow text-sm font-bold uppercase tracking-[0.14em] text-[var(--red)]">Sold out today</span> : null}
+        <span className="absolute bottom-4 left-4 font-barlow text-xs font-semibold uppercase tracking-[0.14em] text-white">
+          {item.category}
+        </span>
+        {item.available === false ? (
+          <span className="absolute inset-0 flex items-center justify-center bg-[#fff8ee]/90 font-barlow text-sm font-bold uppercase tracking-[0.14em] text-[var(--red)]">
+            Sold out today
+          </span>
+        ) : null}
       </div>
-      <div className="px-5 pb-5 pt-4">
+
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
-          <h3 className="font-playfair text-xl font-bold leading-tight text-[var(--charcoal)]">{item.name}</h3>
-          <p className="shrink-0 font-barlow text-lg font-bold text-[var(--red)]">{formatPrice(item.price)}</p>
+          <h3 className="font-playfair text-2xl font-semibold leading-tight text-[var(--charcoal)]">{item.name}</h3>
+          <p className="shrink-0 font-playfair text-2xl font-semibold text-[var(--red)]">{formatPrice(item.price)}</p>
         </div>
-        <div className="mt-2 flex flex-wrap items-center gap-2 font-barlow text-xs font-semibold uppercase tracking-[0.13em] text-[var(--text-muted)]">
-          <span>{item.emoji}</span>
-          <span>{item.category}</span>
-        </div>
-        <div className="mt-4 flex justify-end">
-          <OrderButton item={item} className="min-w-40 px-6 py-2.5">
+        <p className="mt-3 text-sm leading-6 text-[var(--text-muted)]">
+          {categoryNotes[item.category]}
+        </p>
+        <div className="mt-auto pt-5">
+          <OrderButton item={item} className="w-full px-6 py-3">
             Add to order
           </OrderButton>
         </div>
